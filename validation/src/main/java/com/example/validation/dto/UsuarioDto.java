@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class UsuarioDto implements Serializable {
 
     private Long id;
@@ -19,7 +19,6 @@ public class UsuarioDto implements Serializable {
     private String nome;
     private String sobrenome;
     private String email;
-    private String foto;
 
     public Usuario toUsuario(){
         return new Usuario(
@@ -28,8 +27,7 @@ public class UsuarioDto implements Serializable {
           this.password,
           this.nome,
           this.sobrenome,
-          this.email,
-          this.foto
+          this.email
         );
     }
 
@@ -40,8 +38,7 @@ public class UsuarioDto implements Serializable {
                 usuario.getPassword(),
                 usuario.getNome(),
                 usuario.getSobrenome(),
-                usuario.getEmail(),
-                usuario.getFotoPath()
+                usuario.getEmail()
         );
     }
 }

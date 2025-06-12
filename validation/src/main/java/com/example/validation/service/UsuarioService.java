@@ -20,7 +20,6 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
-
     public UsuarioDto createUser(UsuarioDto usuarioDto){
         Usuario  usuario = usuarioDto.toUsuario();
         usuario = usuarioRepository.save(usuario);
@@ -34,8 +33,6 @@ public class UsuarioService {
             usuario.setNome(usuarioDto.getNome());
             usuario.setSobrenome(usuarioDto.getSobrenome());
             usuario.setPassword(usuarioDto.getPassword());
-            usuario.setFotoPath(usuarioDto.getFoto());
-
             Usuario updateUsuario = usuarioRepository.save(usuario);
             return Optional.of(UsuarioDto.fromUsuario(updateUsuario));
         }

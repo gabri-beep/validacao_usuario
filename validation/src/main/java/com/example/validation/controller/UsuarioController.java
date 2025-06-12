@@ -40,16 +40,16 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarios.stream().map(UsuarioDto::fromUsuario).toList());
     }
 
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<UsuarioDto> createUser(@RequestParam("foto") MultipartFile foto,
-                                                 @RequestPart("usuarioDto") UsuarioDto usuarioDto){
-        String fotoPath = saveFoto(foto);
-        usuarioDto.setFoto(fotoPath);
+    @PostMapping
+    public ResponseEntity<UsuarioDto> createUser(//@RequestPart("foto") MultipartFile foto,
+                                                 @RequestBody UsuarioDto usuarioDto){
+        //String fotoPath = saveFoto(foto);
+        //usuarioDto.setFoto(fotoPath);
         UsuarioDto savedUsuarioDto = usuarioService.createUser(usuarioDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUsuarioDto);
     }
 
-    private String saveFoto(MultipartFile foto){
+    /*private String saveFoto(MultipartFile foto){
         String fileName = UUID.randomUUID().toString() + "_" + foto.getOriginalFilename();
         String uploadDir = "src/main/resources/pictures/";
 
@@ -60,9 +60,9 @@ public class UsuarioController {
             throw new RuntimeException("Falha ao salvar a foto.");
         }
         return uploadDir + fileName;
-    }
+    }*/
 
-    @GetMapping("/foto/{username}")
+    /*@GetMapping("/foto/{username}")
     public ResponseEntity<byte[]> getFoto(@PathVariable String username){
         try {
             Optional<Usuario> usuario = usuarioRepository.findByUsername(username);
@@ -89,7 +89,7 @@ public class UsuarioController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-    }
+    }*/
 
     @PutMapping("/{id}")
     public ResponseEntity<UsuarioDto> updateUser(@PathVariable Long id, @RequestBody UsuarioDto usuarioDto){

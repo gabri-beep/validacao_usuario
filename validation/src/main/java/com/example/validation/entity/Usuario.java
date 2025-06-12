@@ -41,6 +41,4 @@ public class Usuario implements Serializable {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
-    private String fotoPath;
 }
